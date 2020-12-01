@@ -27,10 +27,10 @@ workbox.core.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-f388d8e93efc52af99b7.js"
+    "url": "webpack-runtime-fb8dba6e112f8a207187.js"
   },
   {
-    "url": "styles.f628065b851287e306e5.css"
+    "url": "styles.9eafce166a0552e20d76.css"
   },
   {
     "url": "styles-993b0aa9a097397b2002.js"
@@ -39,21 +39,41 @@ self.__precacheManifest = [
     "url": "framework-73216943da764d3c71c7.js"
   },
   {
-    "url": "app-fe786e04ab04da1557ad.js"
+    "url": "app-f29305efc7c2d824d4cc.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "36dbc9fb790757b825b8840539ca79b8"
+    "revision": "286c50ad7fc867fec1b055c9f04ac1fd"
   },
   {
     "url": "component---cache-caches-gatsby-plugin-offline-app-shell-js-6b6b24e9d3742ef27043.js"
+  },
+  {
+    "url": "page-data/offline-plugin-app-shell-fallback/page-data.json",
+    "revision": "e016c9f3c92d13f16fdbc2fa86078c39"
+  },
+  {
+    "url": "page-data/sq/d/1326613243.json",
+    "revision": "ccc10f47ce8218027d53512f2ef43207"
+  },
+  {
+    "url": "page-data/sq/d/3852798627.json",
+    "revision": "9e4cf10590db6e708d296fcd9815a7e1"
+  },
+  {
+    "url": "page-data/sq/d/764694655.json",
+    "revision": "ff250bf35b00350ef4e09a0fc7eaf52e"
+  },
+  {
+    "url": "page-data/app-data.json",
+    "revision": "ad68c75d6bbc4f01aef8c619ed01cfa0"
   },
   {
     "url": "polyfill-92e83c3825287aee541c.js"
   },
   {
     "url": "manifest.webmanifest",
-    "revision": "1b14fab2642b1cbe28c65baaf6e533ea"
+    "revision": "3f7a9fbd9a82a60ee29a1a85c5464620"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
@@ -140,12 +160,12 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
   lastNavigationRequest = event.request.url
 
   let { pathname } = new URL(event.request.url)
-  pathname = pathname.replace(new RegExp(`^`), ``)
+  pathname = pathname.replace(new RegExp(`^/deriv-com`), ``)
 
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/app-fe786e04ab04da1557ad.js`))) {
+  if (!resources || !(await caches.match(`/deriv-com/app-f29305efc7c2d824d4cc.js`))) {
     return await fetch(event.request)
   }
 
@@ -158,7 +178,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
     }
   }
 
-  const offlineShell = `/offline-plugin-app-shell-fallback/index.html`
+  const offlineShell = `/deriv-com/offline-plugin-app-shell-fallback/index.html`
   const offlineShellWithKey = workbox.precaching.getCacheKeyForURL(offlineShell)
   return await caches.match(offlineShellWithKey)
 })
